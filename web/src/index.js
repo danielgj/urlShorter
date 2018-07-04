@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { store } from './_helpers';
-import App from './components/App';
+import { App } from './_components';
 import registerServiceWorker from './registerServiceWorker';
 
-import './css/index.css';
+import './css/styles.css';
 
 
 ReactDOM.render(
