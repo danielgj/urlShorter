@@ -48,4 +48,18 @@ describe('URL Shorter API Test Suite', function() {
       
   });
     
+  it('Add new URL with propper request',function(done) {
+      
+            
+    superagent.
+      post(URL_ROOT).
+      send({url: 'http://wwww.google.es'}).
+      end(
+          function(error, res) {
+            assert.equal(res.status, 201);
+            done();
+          }
+      );            
+  });
+    
 });
