@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import { Header, Footer } from './';
+import { Header, Footer, AddUrlForm } from './';
 
 export class App extends Component {
   render() {
     return (
       <div className="container">
         <Header />
-        <div className="jumbotron">
-          <header className="App-header">
+        <div className="innerContainer">
+          <div className="jumbotron">
             <h1 className="App-title">Bienvenido a la web de UrlShorter</h1>
-          </header>        
+          </div>
         </div>
+        <AddUrlForm />
         <Footer />
       </div>
     );

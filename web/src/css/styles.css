@@ -4,6 +4,10 @@ body {
   font-family: sans-serif;
 }
 
+.innerContainer {
+  margin-top: 100px;
+}
+
 .footerImg {
   position: absolute;
   left: 20px;
