@@ -1,5 +1,6 @@
 var chai = require('chai');
 var assert = chai.assert;
+var expect = chai.expect;
 var superagent = require('superagent');
 
 var URL_ROOT = 'http://localhost:3000/';
@@ -33,7 +34,7 @@ describe('URL Shorter API Test Suite', function() {
         );            
   });
     
-  it('Add new URL with wrong request',function(done) {
+  it('Add new URL with wrong request returns 400',function(done) {
       
               
       superagent.
@@ -48,7 +49,7 @@ describe('URL Shorter API Test Suite', function() {
       
   });
     
-  it('Add new URL with propper request',function(done) {
+  it('Add new URL with propper request returns 201',function(done) {
       
             
     superagent.
@@ -57,6 +58,34 @@ describe('URL Shorter API Test Suite', function() {
       end(
           function(error, res) {
             assert.equal(res.status, 201);
+            done();
+          }
+      );            
+  });
+    
+  it('Add new URL with propper request returns created object',function(done) {
+      
+            
+    superagent.
+      post(URL_ROOT).
+      send({url: 'http://wwww.google.es'}).
+      end(
+          function(error, res) {
+            expect(res.text).to.not.be.undefined;
+            done();
+          }
+      );            
+  });
+    
+  it('Add new URL with propper request returns created _id',function(done) {
+      
+            
+    superagent.
+      post(URL_ROOT).
+      send({url: 'http://wwww.google.es'}).
+      end(
+          function(error, res) {
+            expect(res.text).to.have.property('_id');
             done();
           }
       );            
