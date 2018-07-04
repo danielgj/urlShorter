@@ -25,7 +25,17 @@ module.exports = function(wagner) {
         if(!bodyReq || !_.has(bodyReq,'url')) {
             return res.status(400).send({ msg: 'Bad request' });
         } else {
-            return res.status(201).send({ msg: 'Good request' });
+            wagner.invoke((Url) => {
+
+                return Url.create({url: bodyReq.url})
+                    .catch((err) => {
+                        return res.status(500).json({ msg: "internal_server_error" });
+                    })
+                    .then((data) => {
+                        return res.status(201).json(data);
+                    });
+
+            });
         }
 
     });

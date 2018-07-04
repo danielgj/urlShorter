@@ -85,7 +85,7 @@ describe('URL Shorter API Test Suite', function() {
       send({url: 'http://wwww.google.es'}).
       end(
           function(error, res) {
-            expect(res.text).to.have.property('_id');
+            expect(JSON.parse(res.text)).to.have.property('_id');
             done();
           }
       );            
