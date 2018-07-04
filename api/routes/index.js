@@ -17,6 +17,19 @@ module.exports = function(wagner) {
       res.render('index', { title:  'Acortador de URLS'});
         
     })
+    
+    .post(function(req, res) {
+
+        var bodyReq = req.body;
+
+        if(!bodyReq || !_.has(bodyReq,'url')) {
+            return res.status(400).send({ msg: 'Bad request' });
+        } else {
+            return res.status(201).send({ msg: 'Good request' });
+        }
+
+    });
+
 
     
     return indexRouter;
