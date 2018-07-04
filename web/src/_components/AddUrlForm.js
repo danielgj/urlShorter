@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { urlActions } from '../_actions';
+import { urlConstants } from '../_constants';
 
 
 class AddUrlForm extends React.Component {
@@ -39,7 +40,7 @@ class AddUrlForm extends React.Component {
 
     render() {
 
-        const { creating } = this.props;
+        const { creating, urls } = this.props;
         const { url, submitted } = this.state;
         
         return (
@@ -47,11 +48,25 @@ class AddUrlForm extends React.Component {
                 <form name="addUrlForm" id="addUrlForm" onSubmit={this.handleSubmit}>
                     <div className={'form-group' + (submitted && !url ? ' has-error' : '')}>
                                 <label htmlFor="name">Introduce una URL larga para acortarla:</label>
-                                <input type="text" className="form-control" name="name" value={url} onChange={this.handleChange} />
+                                <input type="text" className="form-control" name="url" value={url} onChange={this.handleChange} />
                                 {submitted && !url &&
                                     <div className="help-block">El valor de la URL es obligatorio</div>
                                 }
                     </div>
+                    { urls.error && 
+                        <div className="alert alert-danger" role="alert">
+                            {urls.error.message}
+                        </div>
+                        
+                    }
+
+                    { !urls.error &&   urls.shortedUrl && 
+                        <div className="alert alert-success" role="alert">
+                            Tu nueva URL: <a href={urlConstants.URL + urls.shortedUrl._id} target="_blank">{urlConstants.URL}{urls.shortedUrl._id}</a>
+                        </div>
+                        
+                    }
+                
                     <div className="form-group">
                                 <button className="btn btn-primary">Acortar</button>
                                 {creating &&
@@ -69,10 +84,10 @@ class AddUrlForm extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { creating, url } = state;
+    const { creating, urls } = state;
     return {
         creating,
-        url
+        urls
     };
 }
 

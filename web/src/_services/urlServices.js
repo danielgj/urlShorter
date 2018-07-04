@@ -10,8 +10,11 @@ function add(urlValue) {
         method: 'POST',
         body: JSON.stringify({
             url: urlValue
-        })
+        }),
+        headers:{'content-type': 'application/json'}
     };
+
+    console.log(requestOptions);
 
     return fetch(urlConstants.URL, requestOptions).then(handleResponse);
 }
