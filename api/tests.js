@@ -33,4 +33,19 @@ describe('URL Shorter API Test Suite', function() {
         );            
   });
     
+  it('Add new URL with wrong request',function(done) {
+      
+              
+      superagent.
+        post(URL_ROOT).
+        send({}).
+        end(
+            function(error, res) {
+              assert.equal(res.status, 400);
+              done();
+            }
+        );  
+      
+  });
+    
 });
