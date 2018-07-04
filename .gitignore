@@ -1,5 +1,6 @@
 #######API files to be ignored
 api/node_modules
+api/config/config.js
 
 
 
