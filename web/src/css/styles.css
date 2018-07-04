@@ -3,3 +3,20 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.footerImg {
+  position: absolute;
+  left: 20px;
+  width: 120px;
+  top: -80px;
+}
+.socialIcon {
+  width: 32px;
+  margin-left: 2px;
+}
+
+.footerCopy, footerContact {
+  vertical-align: middle;
+  color: #ffffff;
+}
+
