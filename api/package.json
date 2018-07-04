@@ -1,0 +1,35 @@
+{
+  "name": "urlshorter_api",
+  "version": "0.0.1",
+  "description": "API for URL Shorter",
+  "main": "app.js",
+  "scripts": {
+    "test": "gulp testAPI"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielgj/urlShorter.git"
+  },
+  "author": "@danielgj",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danielgj/urlShorter/issues"
+  },
+  "homepage": "https://github.com/danielgj/urlShorter#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "http-status": "^1.2.0",
+    "mongoose": "^5.2.1",
+    "pug": "^2.0.3",
+    "underscore": "^1.9.1",
+    "wagner-core": "^0.2.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "gulp": "^4.0.0",
+    "gulp-mocha": "^6.0.0",
+    "mocha": "^5.2.0",
+    "superagent": "^3.8.3"
+  }
+}
