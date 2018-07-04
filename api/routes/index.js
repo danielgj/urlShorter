@@ -12,6 +12,13 @@ module.exports = function(wagner) {
     
     indexRouter.route('/')
     
+    .get(function(req, res) {        
+        
+      res.render('index', { title:  'Acortador de URLS'});
+        
+    })
+
+    
     return indexRouter;
     
 }
