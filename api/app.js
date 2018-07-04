@@ -50,7 +50,7 @@ app.use(function(err, req, res, next) {
 
 //Routes Configuration
 var index = require('./routes/index')(wagner);
-app.use(configParams.base_api_v1_url + '/', index);
+app.use(configParams.base_api_v1_url, index);
 
 
 /**

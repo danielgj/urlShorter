@@ -1,9 +1,10 @@
-var chai = require('chai');
-var assert = chai.assert;
-var expect = chai.expect;
-var superagent = require('superagent');
+const chai = require('chai');
+const assert = chai.assert;
+const expect = chai.expect;
+const superagent = require('superagent');
 
-var URL_ROOT = 'http://localhost:3000/';
+const URL_ROOT = 'http://localhost:3000/';
+const TESTING_URL = 'http://www.google.es/';
 
 describe('URL Shorter API Test Suite', function() {
     
@@ -54,7 +55,7 @@ describe('URL Shorter API Test Suite', function() {
             
     superagent.
       post(URL_ROOT).
-      send({url: 'http://wwww.google.es'}).
+      send({url: TESTING_URL}).
       end(
           function(error, res) {
             assert.equal(res.status, 201);
@@ -68,7 +69,7 @@ describe('URL Shorter API Test Suite', function() {
             
     superagent.
       post(URL_ROOT).
-      send({url: 'http://wwww.google.es'}).
+      send({url: TESTING_URL}).
       end(
           function(error, res) {
             expect(res.text).to.not.be.undefined;
@@ -82,7 +83,7 @@ describe('URL Shorter API Test Suite', function() {
             
     superagent.
       post(URL_ROOT).
-      send({url: 'http://wwww.google.es'}).
+      send({url: TESTING_URL}).
       end(
           function(error, res) {
             expect(JSON.parse(res.text)).to.have.property('_id');
@@ -96,17 +97,18 @@ describe('URL Shorter API Test Suite', function() {
             
     superagent.
       post(URL_ROOT).
-      send({url: 'http://wwww.google.es'}).
+      send({url: TESTING_URL}).
       end(
           function(error, res) {
             const returnedUrl = JSON.parse(res.text)['_id'];
             
             superagent.
             get(URL_ROOT + returnedUrl).
-            send().
             end(
                 function(error, res) {
-                  assert.equal(res.status, 301);
+                  const redirectUrl = res.request.url;
+                  assert.equal(res.status, 200);
+                  assert.equal(redirectUrl, TESTING_URL);
                   done();
                 }
             );  

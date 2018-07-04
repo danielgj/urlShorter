@@ -17,7 +17,7 @@ module.exports = function(wagner) {
       res.render('index', { title:  'Acortador de URLS'});
         
     })
-    
+
     .post(function(req, res) {
 
         var bodyReq = req.body;
@@ -38,9 +38,33 @@ module.exports = function(wagner) {
             });
         }
 
+    })
+
+    indexRouter.route('/:id')
+
+    .get(function(req, res) {   
+        
+        wagner.invoke((Url) => {
+                    
+            Url.findOne({_id: req.params.id})
+                .then((data) => {
+
+                    if(!data) {
+                        res.render('error', { message:  'URL no encontrada', error: {status: 404}});
+                    } else {
+                        return res.status(301).redirect(data.url);
+                    }
+
+                })
+                .catch((err) => {
+                    res.render('error', { message:  'Internal Server Error', error: {status: 500}});
+                });                                                       
+      
+        });
+
+        
+          
     });
-
-
     
     return indexRouter;
     
