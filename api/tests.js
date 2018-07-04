@@ -91,4 +91,27 @@ describe('URL Shorter API Test Suite', function() {
       );            
   });
     
+  it('Get existing URL returns redirection',function(done) {
+      
+            
+    superagent.
+      post(URL_ROOT).
+      send({url: 'http://wwww.google.es'}).
+      end(
+          function(error, res) {
+            const returnedUrl = JSON.parse(res.text)['_id'];
+            
+            superagent.
+            get(URL_ROOT + returnedUrl).
+            send().
+            end(
+                function(error, res) {
+                  assert.equal(res.status, 301);
+                  done();
+                }
+            );  
+          }
+      );            
+  });
+    
 });
