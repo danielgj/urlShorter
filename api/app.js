@@ -6,7 +6,7 @@ var path = require('path');
 
 var configParams = require('./config/config')();
 
-var models = require('./models')(wagner,configParams);
+var models = require('./schemas/models')(wagner,configParams);
 
 
 var app = express();

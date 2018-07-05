@@ -7,7 +7,7 @@ module.exports = function(wagner, config) {
   mongoose.connect(config.db_url, {useNewUrlParser: true});
 
   var Url =
-      mongoose.model('Url', require('./schemas/url'), 'urls');
+      mongoose.model('Url', require('./url'), 'urls');
   
   var models = {
     Url: Url
