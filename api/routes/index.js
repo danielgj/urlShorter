@@ -14,7 +14,7 @@ module.exports = function(wagner) {
     
     .get(function(req, res) {        
         
-      res.render('index', { title:  'Acortador de URLS'});
+      return res.render('index', { title:  'Acortador de URLS'});
         
     })
 
@@ -27,14 +27,29 @@ module.exports = function(wagner) {
         } else {
             wagner.invoke((Url) => {
 
-                return Url.create({url: bodyReq.url})
-                    .catch((err) => {
-                        return res.status(500).json({ msg: "internal_server_error" });
-                    })
-                    .then((data) => {
-                        return res.status(201).json(data);
-                    });
+                Url.findOne({url: bodyReq.url})
+                .then((data) => {
 
+                    if(!data) {
+                        //URL doesn't exist in DB so we create it
+                        Url.create({url: bodyReq.url})
+                            .catch((err) => {
+                                return res.status(500).json({ msg: "internal_server_error" });
+                            })
+                            .then((data) => {
+                                return res.status(201).json(data);
+                            });
+
+                    } else {
+                        //URL exists in DB so we return it
+                        return res.status(201).json(data);
+                    }
+
+                })
+                .catch((err) => {
+                    return res.render('error', { message:  'Internal Server Error', error: {status: 500}});
+                });     
+                
             });
         }
 
@@ -50,14 +65,14 @@ module.exports = function(wagner) {
                 .then((data) => {
 
                     if(!data) {
-                        res.render('error', { message:  'URL no encontrada', error: {status: 404}});
+                        return res.render('error', { message:  'URL no encontrada', error: {status: 404}});
                     } else {
                         return res.status(301).redirect(data.url);
                     }
 
                 })
                 .catch((err) => {
-                    res.render('error', { message:  'Internal Server Error', error: {status: 500}});
+                    return res.render('error', { message:  'Internal Server Error', error: {status: 500}});
                 });                                                       
       
         });
