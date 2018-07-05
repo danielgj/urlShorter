@@ -16,6 +16,7 @@ class AddUrlForm extends React.Component {
         }
         
         this.resetForm = this.resetForm.bind(this);
+        this.copyUrlToclipboard = this.copyUrlToclipboard.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.validateURL = this.validateURL.bind(this);
@@ -31,6 +32,16 @@ class AddUrlForm extends React.Component {
         });
 
         this.props.dispatch(urlActions.resetForm());
+    }
+
+    copyUrlToclipboard() {
+        const el = document.createElement('textarea');
+        el.value = document.querySelector("a[name='newUrlLink']").href;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);        
+        alert("Copiada la URL al portapapeles");
     }
 
     handleChange(e) {
@@ -91,7 +102,8 @@ class AddUrlForm extends React.Component {
 
                     { !urls.error &&   urls.shortedUrl && 
                         <div className="alert alert-success" role="alert">
-                            Tu nueva URL: <a href={urlConstants.URL + urls.shortedUrl._id} target="_blank">{urlConstants.URL}{urls.shortedUrl._id}</a>
+                            Tu nueva URL: <a href={urlConstants.URL + urls.shortedUrl._id} target="_blank" name="newUrlLink">{urlConstants.URL}{urls.shortedUrl._id}</a>
+                            &nbsp;&nbsp;<ion-icon name="clipboard" onClick={this.copyUrlToclipboard}>Copiar</ion-icon>
                         </div>
                         
                     }
