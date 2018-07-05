@@ -14,8 +14,6 @@ function add(urlValue) {
         headers:{'content-type': 'application/json'}
     };
 
-    console.log(requestOptions);
-
     return fetch(urlConstants.URL, requestOptions).then(handleResponse);
 }
 

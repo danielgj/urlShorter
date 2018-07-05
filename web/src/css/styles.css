@@ -24,3 +24,16 @@ body {
   color: #ffffff;
 }
 
+.btn {
+  margin: 5px;
+}
+
+
+.input-error {
+  border-color: red;
+}
+
+.error-block {
+  color: red;
+}
+

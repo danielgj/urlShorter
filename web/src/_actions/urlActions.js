@@ -3,7 +3,7 @@ import { urlServices } from '../_services';
 
 export const urlActions = {
     add,
-    navigate
+    resetForm
 };
 
 function add(urlValue) {
@@ -24,6 +24,6 @@ function add(urlValue) {
     }
 }
 
-function navigate(urlValue) {
-
+function resetForm() {
+    return { type: urlConstants.RESET_URL_FORM };
 }
