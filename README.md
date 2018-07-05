@@ -52,8 +52,9 @@ Aún no he implementado testing de la web React pero la idea es utilizar Jest cu
 
 Son varios los temas a mejora en la versión actual de la solución:
 
-- UX / UI del componente web
+- Permitir copiar al portapapeles la URL corta generada
 - Generación de IDs cortos: actualmente simplemente devuelvo el ID de la BD MongoDB que no parace ser suficientemente corto.
+- UX / UI del componente web
 - Testing del componente web
 
 ## Ejecución del proyecto
