@@ -4,6 +4,7 @@
   "description": "API for URL Shorter",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "gulp testAPI"
   },
   "repository": {
