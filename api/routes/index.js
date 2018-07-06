@@ -3,7 +3,7 @@ var status = require('http-status');
 var bodyparser = require('body-parser');
 var _ = require('underscore');
 
-module.exports = function(wagner) {
+module.exports = function(wagner, config) {
  
     var indexRouter = express.Router();
 
@@ -37,12 +37,23 @@ module.exports = function(wagner) {
                                 return res.status(500).json({ msg: "internal_server_error" });
                             })
                             .then((data) => {
-                                return res.status(201).json(data);
+
+                                var newUrl = {
+                                    url: data.url,
+                                    shortedUrl: data._id.toString(36)
+                                }
+
+                                return res.status(201).json(newUrl);
                             });
 
                     } else {
                         //URL exists in DB so we return it
-                        return res.status(201).json(data);
+                        var newUrl = {
+                            url: data.url,
+                            shortedUrl: data._id.toString(36)
+                        }
+
+                        return res.status(201).json(newUrl);
                     }
 
                 })

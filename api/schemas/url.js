@@ -1,6 +1,11 @@
 var mongoose = require('mongoose');
+var configParams = require('../config/config')();
+var autoIncrement = require('mongoose-auto-increment');
 
-var Schema = mongoose.Schema;
+mongoose.Promise = global.Promise;
+var connection = mongoose.createConnection(configParams.db_url, {useNewUrlParser: true});
+
+autoIncrement.initialize(connection);
 
 var urlSchema = {
     url: {
@@ -10,6 +15,7 @@ var urlSchema = {
 };
 
 var schema = new mongoose.Schema(urlSchema, {timestamps: true});
+schema.plugin(autoIncrement.plugin, 'Url');
 
 module.exports = schema;
 module.exports.urlSchema = urlSchema;

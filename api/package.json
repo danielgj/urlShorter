@@ -1,6 +1,6 @@
 {
   "name": "urlshorter_api",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "API for URL Shorter",
   "main": "app.js",
   "scripts": {
@@ -22,6 +22,7 @@
     "express": "^4.16.3",
     "http-status": "^1.2.0",
     "mongoose": "^5.2.1",
+    "mongoose-auto-increment": "^5.0.1",
     "pug": "^2.0.3",
     "underscore": "^1.9.1",
     "wagner-core": "^0.2.0"

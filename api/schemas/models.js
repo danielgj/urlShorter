@@ -4,10 +4,9 @@ var _ = require('underscore');
 module.exports = function(wagner, config) {
 
   mongoose.Promise = global.Promise;
-  mongoose.connect(config.db_url, {useNewUrlParser: true});
+  var connection = mongoose.connect(config.db_url, {useNewUrlParser: true});
 
-  var Url =
-      mongoose.model('Url', require('./url'), 'urls');
+  var Url = mongoose.model('Url', require('./url'), 'urls');
   
   var models = {
     Url: Url

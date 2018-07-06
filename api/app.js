@@ -49,7 +49,7 @@ app.use(function(err, req, res, next) {
 
 
 //Routes Configuration
-var index = require('./routes/index')(wagner);
+var index = require('./routes/index')(wagner, configParams);
 app.use(configParams.base_api_v1_url, index);
 
 

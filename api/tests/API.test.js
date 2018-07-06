@@ -78,7 +78,7 @@ describe('URL Shorter API Test Suite', function() {
       );            
   });
     
-  it('Add new URL with propper request returns created _id',function(done) {
+  it('Add new URL with propper request returns created shortedUrl',function(done) {
       
             
     superagent.
@@ -86,7 +86,7 @@ describe('URL Shorter API Test Suite', function() {
       send({url: TESTING_URL}).
       end(
           function(error, res) {
-            expect(JSON.parse(res.text)).to.have.property('_id');
+            expect(JSON.parse(res.text)).to.have.property('shortedUrl');
             done();
           }
       );            
@@ -100,7 +100,7 @@ describe('URL Shorter API Test Suite', function() {
       send({url: TESTING_URL}).
       end(
           function(error, res) {
-            const returnedUrl = JSON.parse(res.text)['_id'];
+            const returnedUrl = JSON.parse(res.text)['shortedUrl'];
             
             superagent.
             get(URL_ROOT + returnedUrl).
