@@ -71,8 +71,10 @@ module.exports = function(wagner, config) {
     .get(function(req, res) {   
         
         wagner.invoke((Url) => {
+
+            const idDecoded = parseInt(req.params.id, 36);
                     
-            Url.findOne({_id: req.params.id})
+            Url.findOne({_id: idDecoded})
                 .then((data) => {
 
                     if(!data) {
