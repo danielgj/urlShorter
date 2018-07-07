@@ -81,45 +81,47 @@ class AddUrlForm extends React.Component {
         const { url, submitted, validUrl } = this.state;
         
         return (
-            <div>
-                <form name="addUrlForm" id="addUrlForm" onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                                <label htmlFor="name">Introduce una URL larga para acortarla:</label>
-                                <input type="text" className={'form-control' + (submitted && !validUrl ? ' input-error' : '')} name="url" value={url} onChange={this.handleChange} />
-                                {submitted && !url &&
-                                    <div className="error-block">El valor de la URL es obligatorio</div>
-                                }
-                                {submitted && url && !validUrl &&
-                                    <div className="error-block">El formato de la URL es incorrecto</div>
-                                }
-                    </div>
-                    { urls.error && 
-                        <div className="alert alert-danger" role="alert">
-                            {urls.error.message}
+            <div class="row align-items-center justify-content-center">
+                <div class="col-8 col-offset-2 text-center">
+                    <form name="addUrlForm" id="addUrlForm" onSubmit={this.handleSubmit}>
+                        <div className="form-group">
+                                    <label htmlFor="name">Introduce una URL larga para acortarla:</label>
+                                    <input type="text" className={'form-control' + (submitted && !validUrl ? ' input-error' : '')} name="url" value={url} onChange={this.handleChange} />
+                                    {submitted && !url &&
+                                        <div className="error-block">El valor de la URL es obligatorio</div>
+                                    }
+                                    {submitted && url && !validUrl &&
+                                        <div className="error-block">El formato de la URL es incorrecto</div>
+                                    }
                         </div>
-                        
-                    }
+                        { urls.error && 
+                            <div className="alert alert-danger" role="alert">
+                                {urls.error.message}
+                            </div>
+                            
+                        }
 
-                    { !urls.error &&   urls.shortedUrl && 
-                        <div className="alert alert-success" role="alert">
-                            Tu nueva URL: <a href={urlConstants.URL + urls.shortedUrl._id} target="_blank" name="newUrlLink">{urlConstants.URL}{urls.shortedUrl._id}</a>
-                            &nbsp;&nbsp;<ion-icon name="clipboard" onClick={this.copyUrlToclipboard}>Copiar</ion-icon>
-                        </div>
-                        
-                    }
-                
-                    <div className="form-group">
-                                <button className="btn btn-primary">Acortar</button>
-                                { !urls.error &&   urls.shortedUrl && 
-                                <button className="btn btn-primary" onClick={this.resetForm}>Resetear</button>
-                                }
-                                {creating &&
-                                    <img 
-                                   alt="loading"  src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                                }
-                            </div>  
+                        { !urls.error &&   urls.shortedUrl && 
+                            <div className="alert alert-success" role="alert">
+                                Tu nueva URL: <a href={urlConstants.URL + urls.shortedUrl.shortedUrl} target="_blank" name="newUrlLink">{urlConstants.URL}{urls.shortedUrl.shortedUrl}</a>
+                                &nbsp;&nbsp;<ion-icon name="clipboard" onClick={this.copyUrlToclipboard}>Copiar</ion-icon>
+                            </div>
+                            
+                        }
+                    
+                        <div className="form-group">
+                                    <button className="btn btn-primary">Acortar</button>
+                                    { !urls.error &&   urls.shortedUrl && 
+                                    <button className="btn btn-primary" onClick={this.resetForm}>Resetear</button>
+                                    }
+                                    {creating &&
+                                        <img 
+                                    alt="loading"  src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                    }
+                                </div>  
 
-                </form>
+                    </form>
+                </div>
             </div>
             
         )

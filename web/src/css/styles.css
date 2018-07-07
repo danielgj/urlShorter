@@ -4,25 +4,10 @@ body {
   font-family: sans-serif;
 }
 
-.innerContainer {
-  margin-top: 100px;
+header {
+  margin-bottom: 100px;
 }
 
-.footerImg {
-  position: absolute;
-  left: 20px;
-  width: 120px;
-  top: -80px;
-}
-.socialIcon {
-  width: 32px;
-  margin-left: 2px;
-}
-
-.footerCopy, footerContact {
-  vertical-align: middle;
-  color: #ffffff;
-}
 
 .btn {
   margin: 5px;
